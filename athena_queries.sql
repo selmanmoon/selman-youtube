@@ -1,3 +1,18 @@
+-- Athena Table
+
+CREATE EXTERNAL TABLE openaq_data (
+    country STRING,
+    coordinates STRUCT<latitude:DOUBLE, longitude:DOUBLE>,
+    date STRUCT<local:STRING, utc:STRING>,
+    city STRING,
+    parameter STRING,
+    unit STRING,
+    value DOUBLE,
+    quality_label STRING
+)
+STORED AS PARQUET
+LOCATION 's3://myprocessedbucket-785255668313/openaq/processed_data/';
+
 # --Top 10 Cities with Highest Average PM2.5, Grouped by Country:
 
 WITH CityAverages AS (
